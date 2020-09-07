@@ -49,7 +49,22 @@ app.post('/register', (req, res) => {
 });
 
 app.post('/login', (req,res)=>{
-    
+    const {email, password} = req.body
+    fs.readFile('db.json', (error,data)=>{
+        if(error){console.log(error)}
+        const users = JSON.parse(data)
+        const user = users.find(element => {
+            if(element.email === email && element.password === password){
+                return element
+            }
+        })
+        if(user){
+            res.sendFile(path.join(__dirname, 'public', 'index.html'))
+        } else {
+            res.redirect('/login.html')
+        }
+    })
+    console.log(email, password)
 })
 
 app.get('/registro', (req, res) => {
