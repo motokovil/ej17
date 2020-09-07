@@ -48,6 +48,10 @@ app.post('/register', (req, res) => {
     });
 });
 
+app.post('/login', (req,res)=>{
+    
+})
+
 app.get('/registro', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'register.html'));
 });
